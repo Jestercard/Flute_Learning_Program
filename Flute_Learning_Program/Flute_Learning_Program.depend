@@ -1,4 +1,5 @@
 # depslib dependency file v1.0
-1514144174 source:d:\repositories\flute_learning_program\flute_learning_program\main.cpp
-	<iostream>
+1557897219 source:d:\repositories\flute_learning_program\flute_learning_program\main.cpp
+	<windows.h>
+	<stdlib.h>
 
