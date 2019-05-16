@@ -6,9 +6,6 @@
 #define FILE_MENU_EXIT 3
 #define GENERATE_BUTTON 4
 
-//will need to remove images and format to begin work to make into program
-//copied over from winAPI tutorial
-
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
 void AddControls(HWND);
