@@ -1,8 +1,6 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <commctrl.h>
-#include <math.h>
-#include <objbase.h>
 
 #define FREEPLAY_BUTTON 1
 #define CHALLENGE_BUTTON 2
@@ -10,7 +8,7 @@
 #define FREEPLAY_MAINMENU 4
 #define CHALLENGE_MAINMENU 5
 #define OPTION_MAINMENU 6
-
+#define APPLY_CHANGE 7
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
@@ -22,12 +20,14 @@ void Challenge_creation(HWND);
 void Challenge_deletion(HWND);
 void Option_creation(HWND);
 void Option_deletion(HWND);
+void ApplyChanges(HWND);
 
-HWND hFree, hChallenge, hOption, hMainMenu, hTitle, hChal_One, hChal_Two, hChal_Three, hWindowSize;
+HWND hFree, hChallenge, hOption, hMainMenu,
+hTitle, hChal_One, hChal_Two, hChal_Three,
+hWindowSize, hWindowChange, WindowResolution, hTester;
 HMENU hMenu;
 
 //variables to get center of window
-
 int windowlength_x = 720;
 int windowlength_y = 480;
 
@@ -38,6 +38,7 @@ int buttoncenter_x = (windowlength_x / 2) - (buttonlength_x / 2);
 int headerlength_x = 300;
 int headerlength_y = 50;
 int headercenter_x = (windowlength_x / 2) - (headerlength_x / 2);
+
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR args, int nCmdShow)
 {
@@ -96,6 +97,9 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         case OPTION_MAINMENU:
             Option_deletion(hWnd);
             MainMenu_creation(hWnd);
+            break;
+        case APPLY_CHANGE:
+            ApplyChanges(hWnd);
             break;
         }
         break;
@@ -158,10 +162,45 @@ void Option_creation(HWND hWnd)
 {
     SetWindowText(hTitle, "Options");
     hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_MAINMENU, NULL, NULL);
+    hWindowChange = CreateWindowW(L"Button", L"Apply", WS_VISIBLE | WS_CHILD, 100, 240, buttonlength_x, buttonlength_y, hWnd, (HMENU)APPLY_CHANGE, NULL, NULL);
 
-    hWindowSize = CreateWindow(WC_COMBOBOX, TEXT("Select Window Size"), CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,
-                                250, 140, buttonlength_x, buttonlength_y, hWnd, NULL, NULL, NULL);
+    hWindowSize = CreateWindow(WC_COMBOBOX, TEXT("Window Size"), CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,
+                                250, 140, buttonlength_x, buttonlength_y+100, hWnd, NULL, NULL, NULL);
+    char WindowSizeOptions[4][20] = {"480x360","720x480","1280x720","1920x1080"};
+    for (int i=0; i<4; i++)
+    {
+        SendMessage(hWindowSize,(UINT) CB_ADDSTRING,(WPARAM) 0,(LPARAM) WindowSizeOptions[i]);
+    }
+    SendMessage(hWindowSize, CB_SETCURSEL, (WPARAM)1, (LPARAM)0);
 }
+
+void ApplyChanges(HWND hWnd)
+{
+    char WindowResolution[20];
+    GetWindowText(hWindowChange, WindowResolution, 20);
+    if (WindowResolution == "480x360")
+    {
+        windowlength_x = 480;
+        windowlength_y = 360;
+    }
+    else if (WindowResolution == "720x480")
+    {
+        windowlength_x = 720;
+        windowlength_y = 480;
+    }
+    else if (WindowResolution == "1280x720")
+    {
+        windowlength_x = 1280;
+        windowlength_y = 720;
+    }
+    else if (WindowResolution == "1980x1080")
+    {
+        windowlength_x = 1980;
+        windowlength_y = 1080;
+    }
+    SetWindowPos(hWnd, NULL, 0, 0, windowlength_x, windowlength_y, SWP_NOMOVE);
+}
+
 void Option_deletion(HWND hWnd)
 {
     DestroyWindow(hMainMenu);
