@@ -1,5 +1,8 @@
 #include <windows.h>
 #include <stdlib.h>
+#include <commctrl.h>
+#include <math.h>
+#include <objbase.h>
 
 #define FREEPLAY_BUTTON 1
 #define CHALLENGE_BUTTON 2
@@ -20,7 +23,7 @@ void Challenge_deletion(HWND);
 void Option_creation(HWND);
 void Option_deletion(HWND);
 
-HWND hFree, hChallenge, hOption, hMainMenu, hTitle, hChal_One, hChal_Two, hChal_Three;
+HWND hFree, hChallenge, hOption, hMainMenu, hTitle, hChal_One, hChal_Two, hChal_Three, hWindowSize;
 HMENU hMenu;
 
 //variables to get center of window
@@ -155,10 +158,13 @@ void Option_creation(HWND hWnd)
 {
     SetWindowText(hTitle, "Options");
     hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_MAINMENU, NULL, NULL);
-}
 
+    hWindowSize = CreateWindow(WC_COMBOBOX, TEXT("Select Window Size"), CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,
+                                250, 140, buttonlength_x, buttonlength_y, hWnd, NULL, NULL, NULL);
+}
 void Option_deletion(HWND hWnd)
 {
     DestroyWindow(hMainMenu);
+    DestroyWindow(hWindowSize);
 }
 
