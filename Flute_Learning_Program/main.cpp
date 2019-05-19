@@ -62,7 +62,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR args, int nCmdSh
 
 LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-    switch ( msg)
+    switch (msg)
     {
     case WM_COMMAND:
 
@@ -100,9 +100,6 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
-    case WM_SIZE:
-        MainMenu_creation(hWnd);
-        break;
     default:
         return DefWindowProcW(hWnd, msg, wp, lp);
     }
@@ -131,7 +128,7 @@ void FreePlay_creation(HWND hWnd)
 
 void FreePlay_deletion(HWND hWnd)
 {
-    ;
+    DestroyWindow(hMainMenu);
 }
 
 void Option_creation(HWND hWnd)
@@ -141,7 +138,7 @@ void Option_creation(HWND hWnd)
 
 void Option_deletion(HWND hWnd)
 {
-    ;
+    DestroyWindow(hMainMenu);
 }
 
 void Challenge_creation(HWND hWnd)
@@ -151,5 +148,5 @@ void Challenge_creation(HWND hWnd)
 
 void Challenge_deletion(HWND hWnd)
 {
-    ;
+    DestroyWindow(hMainMenu);
 }
