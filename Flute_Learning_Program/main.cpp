@@ -34,6 +34,7 @@ int windowlength_y = 480;
 int buttonlength_x = 100;
 int buttonlength_y = 50;
 int buttoncenter_x = (windowlength_x / 2) - (buttonlength_x / 2);
+int buttonleftside_x = (windowlength_x / 5);
 
 int headerlength_x = 300;
 int headerlength_y = 50;
@@ -57,7 +58,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR args, int nCmdSh
                   NULL, NULL, NULL, NULL);
     MSG msg = {0};
 
-    while( GetMessage(&msg, NULL, NULL, NULL ))
+    while( GetMessage(&msg, NULL, 0, 0))
     {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -161,8 +162,8 @@ void Challenge_deletion(HWND hWnd)
 void Option_creation(HWND hWnd)
 {
     SetWindowText(hTitle, "Options");
-    hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_MAINMENU, NULL, NULL);
-    hWindowChange = CreateWindowW(L"Button", L"Apply", WS_VISIBLE | WS_CHILD, 100, 240, buttonlength_x, buttonlength_y, hWnd, (HMENU)APPLY_CHANGE, NULL, NULL);
+    hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, buttonleftside_x, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_MAINMENU, NULL, NULL);
+    hWindowChange = CreateWindowW(L"Button", L"Apply", WS_VISIBLE | WS_CHILD, 100, 260, buttonlength_x, buttonlength_y, hWnd, (HMENU)APPLY_CHANGE, NULL, NULL);
 
     hWindowSize = CreateWindow(WC_COMBOBOX, TEXT("Window Size"), CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,
                                 250, 140, buttonlength_x, buttonlength_y+100, hWnd, NULL, NULL, NULL);
@@ -178,25 +179,24 @@ void ApplyChanges(HWND hWnd)
 {
     int WindowResolution;
     WindowResolution = SendMessage(hWindowSize, CB_GETCURSEL, (WPARAM)0, (LPARAM)0);
-    if (WindowResolution == 0)
+    switch (WindowResolution)
     {
+    case 0:
         windowlength_x = 480;
         windowlength_y = 360;
-    }
-    else if (WindowResolution == 1)
-    {
+        break;
+    case 1:
         windowlength_x = 720;
         windowlength_y = 480;
-    }
-    else if (WindowResolution == 2)
-    {
+        break;
+    case 2:
         windowlength_x = 1280;
         windowlength_y = 720;
-    }
-    else if (WindowResolution == 3)
-    {
+        break;
+    case 3:
         windowlength_x = 1980;
         windowlength_y = 1080;
+        break;
     }
     SetWindowPos(hWnd, NULL, 0, 0, windowlength_x, windowlength_y, SWP_NOMOVE);
 }
