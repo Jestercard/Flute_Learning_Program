@@ -176,24 +176,24 @@ void Option_creation(HWND hWnd)
 
 void ApplyChanges(HWND hWnd)
 {
-    char WindowResolution[20];
-    GetWindowText(hWindowChange, WindowResolution, 20);
-    if (WindowResolution == "480x360")
+    int WindowResolution;
+    WindowResolution = SendMessage(hWindowSize, CB_GETCURSEL, (WPARAM)0, (LPARAM)0);
+    if (WindowResolution == 0)
     {
         windowlength_x = 480;
         windowlength_y = 360;
     }
-    else if (WindowResolution == "720x480")
+    else if (WindowResolution == 1)
     {
         windowlength_x = 720;
         windowlength_y = 480;
     }
-    else if (WindowResolution == "1280x720")
+    else if (WindowResolution == 2)
     {
         windowlength_x = 1280;
         windowlength_y = 720;
     }
-    else if (WindowResolution == "1980x1080")
+    else if (WindowResolution == 3)
     {
         windowlength_x = 1980;
         windowlength_y = 1080;
@@ -205,5 +205,6 @@ void Option_deletion(HWND hWnd)
 {
     DestroyWindow(hMainMenu);
     DestroyWindow(hWindowSize);
+    DestroyWindow(hWindowChange);
 }
 
