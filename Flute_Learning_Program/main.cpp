@@ -1,20 +1,27 @@
 #include <windows.h>
 #include <stdlib.h>
 
-#define FILE_MENU_NEW 1
-#define FILE_MENU_OPEN 2
-#define FILE_MENU_EXIT 3
-#define FREEPLAY_BUTTON 4
-#define CHALLENGE_BUTTON 5
-#define OPTION_BUTTON 6
+#define FREEPLAY_BUTTON 1
+#define CHALLENGE_BUTTON 2
+#define OPTION_BUTTON 3
+#define FREEPLAY_MAINMENU 4
+#define CHALLENGE_MAINMENU 5
+#define OPTION_MAINMENU 6
+
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
 void MainMenu_creation(HWND);
 void MainMenu_deletion(HWND);
+void FreePlay_creation(HWND);
+void FreePlay_deletion(HWND);
+void Challenge_creation(HWND);
+void Challenge_deletion(HWND);
 void Option_creation(HWND);
+void Option_deletion(HWND);
 
-HWND hFree, hChallenge, hOption;
+HWND hFree, hChallenge, hOption, hMainMenu;
+HMENU hMenu;
 
 //variables to get center of window
 
@@ -27,7 +34,7 @@ int buttonlength_y = 50;
 int center_x = (windowlength_x / 2) - (buttonlength_x / 2);
 int center_y = (windowlength_y / 2) - (buttonlength_y / 2);
 
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR args, int ncmdshow)
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR args, int nCmdShow)
 {
     WNDCLASSW wc = {0};
 
@@ -61,14 +68,29 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
         switch(wp)
         {
-        case FILE_MENU_EXIT:
-            DestroyWindow(hWnd);
-            break;
         case FREEPLAY_BUTTON:
+            MainMenu_deletion(hWnd);
+            FreePlay_creation(hWnd);
             break;
         case CHALLENGE_BUTTON:
+            MainMenu_deletion(hWnd);
+            Challenge_creation(hWnd);
             break;
         case OPTION_BUTTON:
+            MainMenu_deletion(hWnd);
+            Option_creation(hWnd);
+            break;
+        case FREEPLAY_MAINMENU:
+            FreePlay_deletion(hWnd);
+            MainMenu_creation(hWnd);
+            break;
+        case CHALLENGE_MAINMENU:
+            Challenge_deletion(hWnd);
+            MainMenu_creation(hWnd);
+            break;
+        case OPTION_MAINMENU:
+            Option_deletion(hWnd);
+            MainMenu_creation(hWnd);
             break;
         }
         break;
@@ -78,6 +100,9 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+    case WM_SIZE:
+        MainMenu_creation(hWnd);
+        break;
     default:
         return DefWindowProcW(hWnd, msg, wp, lp);
     }
@@ -85,19 +110,46 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
 void MainMenu_creation(HWND hWnd)
 {
-    HWND hFree = CreateWindowW(L"Button", L"Free Play", WS_VISIBLE | WS_CHILD, center_x, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)FREEPLAY_BUTTON, NULL, NULL);
+    hFree = CreateWindowW(L"Button", L"Free Play", WS_VISIBLE | WS_CHILD, center_x, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)FREEPLAY_BUTTON, NULL, NULL);
 
-    HWND hChallenge = CreateWindowW(L"Button", L"Challenges", WS_VISIBLE | WS_CHILD, center_x, 200, buttonlength_x, buttonlength_y, hWnd, (HMENU)CHALLENGE_BUTTON, NULL, NULL);
+    hChallenge = CreateWindowW(L"Button", L"Challenges", WS_VISIBLE | WS_CHILD, center_x, 200, buttonlength_x, buttonlength_y, hWnd, (HMENU)CHALLENGE_BUTTON, NULL, NULL);
 
-    HWND hOption = CreateWindowW(L"Button", L"Options", WS_VISIBLE | WS_CHILD, center_x, 260, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_BUTTON, NULL, NULL);
+    hOption = CreateWindowW(L"Button", L"Options", WS_VISIBLE | WS_CHILD, center_x, 260, buttonlength_x, buttonlength_y, hWnd, (HMENU)OPTION_BUTTON, NULL, NULL);
 }
 
 void MainMenu_deletion(HWND hWnd)
+{
+    DestroyWindow(hFree);
+    DestroyWindow(hChallenge);
+    DestroyWindow(hOption);
+}
+
+void FreePlay_creation(HWND hWnd)
+{
+    hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)FREEPLAY_MAINMENU, NULL, NULL);
+}
+
+void FreePlay_deletion(HWND hWnd)
 {
     ;
 }
 
 void Option_creation(HWND hWnd)
+{
+    hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)FREEPLAY_MAINMENU, NULL, NULL);
+}
+
+void Option_deletion(HWND hWnd)
+{
+    ;
+}
+
+void Challenge_creation(HWND hWnd)
+{
+    hMainMenu = CreateWindowW(L"Button", L"Main Menu", WS_VISIBLE | WS_CHILD, 100, 140, buttonlength_x, buttonlength_y, hWnd, (HMENU)FREEPLAY_MAINMENU, NULL, NULL);
+}
+
+void Challenge_deletion(HWND hWnd)
 {
     ;
 }
