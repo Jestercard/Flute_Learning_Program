@@ -1,6 +1,3 @@
-# Flute_Learning_Program
-
-
 ******FOLLOWUP TASKS*******
 
 Next meeting: Friday May 24th 9:30pm Central
@@ -24,9 +21,6 @@ Stuff for both
 https://docs.microsoft.com/en-us/windows/desktop/apiindex/windows-api-list
 Get plenty of coffee and red bull for friday
 Clean up flowcharts
-
-
-
 
 
 
