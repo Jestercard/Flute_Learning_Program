@@ -1,0 +1,15 @@
+G:\Repositories\Flute_Learning_Program\WPF Trial\bin\Debug\WPF Trial.exe.config
+G:\Repositories\Flute_Learning_Program\WPF Trial\bin\Debug\WPF Trial.exe
+G:\Repositories\Flute_Learning_Program\WPF Trial\bin\Debug\WPF Trial.pdb
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.csprojAssemblyReference.cache
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\MainWindow.g.cs
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\App.g.cs
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial_MarkupCompile.cache
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial_MarkupCompile.lref
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\MainWindow.baml
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.g.resources
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF_Trial.Properties.Resources.resources
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.csproj.GenerateResource.cache
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.csproj.CoreCompileInputs.cache
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.exe
+G:\Repositories\Flute_Learning_Program\WPF Trial\obj\Debug\WPF Trial.pdb
