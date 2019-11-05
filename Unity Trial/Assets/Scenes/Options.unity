@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -213,7 +213,7 @@ PrefabInstance:
     - target: {fileID: 2236654301368200230, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: MainMenuButton
       objectReference: {fileID: 0}
     - target: {fileID: 2236654301368200231, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
         type: 3}
@@ -325,6 +325,36 @@ PrefabInstance:
       propertyPath: m_Text
       value: Main Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 767579867}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c3cb3f7f7cf394c8e8511c7c17448e, type: 3}
 --- !u!224 &767579866 stripped
@@ -333,6 +363,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 767579865}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &767579867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3847521444172173346, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
+    type: 3}
+  m_PrefabInstance: {fileID: 767579865}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9c255a77705524dae6c5e8d8424466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &797510839
 GameObject:
   m_ObjectHideFlags: 0
