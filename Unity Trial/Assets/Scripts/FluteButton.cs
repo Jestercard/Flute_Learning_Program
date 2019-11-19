@@ -6,19 +6,19 @@ using MidiJack;
 public class FluteButton : MonoBehaviour
 {
     public int midiValue;
-    public GameObject ButtonReleasedPrefab;
-    public GameObject ButtonPressedPrefab;
+    public GameObject fluteButtonPrefab;
+    public Material buttonMaterialRelease;
+    public Material buttonMaterialPressed;
+    //public Material buttonComboMaterial; added in the future
 
     private Transform location;
-    private GameObject buttonReleased;
-    private GameObject buttonPressed;
+    private GameObject button;
     private MidiChannel midiChannel;
-
 
     public void Start()
     {
         location = GetComponent<Transform>();
-        buttonReleased = (GameObject)Instantiate(ButtonReleasedPrefab, location.position, location.rotation);
+        button = Instantiate<GameObject>(fluteButtonPrefab, location.position, location.rotation);
         Debug.Log($"Flute Button {midiValue} was Instantiated");
     }
 
@@ -28,22 +28,20 @@ public class FluteButton : MonoBehaviour
         {
             ButtonIsPressed();
         }
-        else if (MidiMaster.GetKeyUp(midiChannel, midiValue))
+        if (MidiMaster.GetKeyUp(midiChannel, midiValue))
         {
             ButtonIsReleased();
         }
     }
     public void ButtonIsPressed()
     {
-        Destroy(buttonReleased);
-        buttonPressed = (GameObject)Instantiate(ButtonPressedPrefab, location.position, location.rotation);
+        button.GetComponent<MeshRenderer>().material = buttonMaterialPressed;
         Debug.Log($"Flute Button {midiValue} was Pressed");
     }
 
     public void ButtonIsReleased()
     {
-        Destroy(buttonPressed);
-        buttonReleased = (GameObject)Instantiate(ButtonReleasedPrefab, location.position, location.rotation);
+        button.GetComponent<MeshRenderer>().material = buttonMaterialRelease;
         Debug.Log($"Flute Button {midiValue} was Released");
     }
 }
