@@ -34,11 +34,11 @@ Component 2 - Input to MIDI Program (ITMP)
 
 - Output of Arduino will be MIDI data. Hiduino is to only be used to make an Arduino to be recognized as a MIDI device instead of serial. This will allow the device to be connected to any computer and played on most any Digital Audio Workstation and synthesizers. Check out blog post here on my own WIP website: https://cachrecording.wixsite.com/cachrecording/midi-controller
 
-Component 3 - Flute Learning Program
+Component 3 - Instrument Learning Program
 
-- Majority of this will be written within Code::Blocks.
-- C++ language using the Windows API.
-- Program will be run externally on a computer and will accept MIDI messages as input. This will allow for individual note presses to be picked up and sent, rather than patterns recognized.
-- There will be the free play option. Basically it will take an input and display it on screen.
+- Will use Unity as the platform (C#)
+- Program will be run externally on a computer and will accept MIDI messages as input. This will allow for individual note presses to be picked up and sent, rather than patterns recognized by the hardware.
+- There will be the free play option., which will take an input and display it on screen.
 - There will be challenges to where someone has to play along with the patterns on a screen and be scored based on how well it was followed. Challenges will vary in difficulty.
 - There will be options menu to adjust window size and other various settings.
+

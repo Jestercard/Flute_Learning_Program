@@ -1,66 +1,27 @@
-******FOLLOWUP TASKS******
+*****This Week for Mentorship (11/13)*********
 
-Next meeting: Friday May 24th 9:30pm Central (postponed to later date)
+- change materials for buttons instead of using the Destroy and Instantiate method constantly.
+- make sure UI is size to screen and not world space.
+- state machine; have a third state (triggers when button pressed combination creates a pattern).
+- add note being played to a display on the UI.
+- make code portable.
 
-Jestercard Tasks
-
-- Make main menu and functional buttons to different selections
-- Make list of user adjustable options
-- Generate sample bitmap images
-- Learn how to make program into .exe (make it portable)
-
-Elchupacantor Tasks
-
-- Metronome without cmd constantly scrolling
-- Use MS interval and not based on time of day
-- Read up on C++ and code::blocks
-
-Stuff for both
-
-- https://docs.microsoft.com/en-us/windows/desktop/apiindex/windows-api-list
-- Get plenty of coffee and red bull for planning and coding
-- Clean up flowcharts
+- work on hardware (the midi instrument itself (flute)).
 
 
+**Other things we discussed**
 
-******PRIOR TASKS******
+- Pico8 website (simple yet robust game engine).
+- Screeps (javascript coding videogame).
+- Unity Tutorials.
 
-Meeting: May 15th at 9pm central
+***Questions Encountered***
 
-Jestercard completed:
+- still not able to get UI to scale with screen size (it may just be the editor though).
+- getting input from the various button locations into the pattern tracker.
 
-- Worked on ITMP and the 2 modes
-- Get Mode 2 to work (interfaces with learning aid).
-- Work on hardware - how to build the thing
-- Flesh out GUI example (powerpoint)
-- List of options to include
-- SFX volume, music volume, etc.
+*****Previous Weeks*****
 
-Elchupacantor completed:
-
-- Gussy up free play chart
-- Complete challenge mode chart
-- Program simple metronome (60, 90, and 120 BPM). Tenth of a second, 500 Hertz
-
-Both
-
-- Do research into C++ and code::blocks, how to make a new window with buttons (no command prompt)
-
-
-Meeting: May 5th at 8pm Central
-
-Jestercard Completed:
-
-- Map out to see what the outputs are going to be for external program (see MIDI excel sheet)
-
-Elchupacantor Completed:
-
-- Rough logic chart of external teaching aid program
-- 1 free play option (Completed Rough Draft)
-- Challenge mode (Not Completed)
-- Think at least 3 musical challenges
-- Rhythm (IDK if this would work, not sure how to coding timing element)
-- Program a metronome
-- Simple Songs (Public Domain)
-- Pattern Match
-- Octave Training (Possibly not a challenge)
+- Use the Unity engine as the base platform.
+- Created buttons to navigate through different scenes (such as main menu, challenge, freeplay, options).
+- Able to get Unity to accept MIDI input via MidiJack package: https://github.com/keijiro/MidiJack
