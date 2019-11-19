@@ -13,7 +13,8 @@ public class FluteButton : MonoBehaviour
 
     private Transform location;
     private GameObject button;
-    private MidiChannel midiChannel;
+    private readonly MidiChannel midiChannel;
+    public bool isPressed = false;
 
     public void Start()
     {
@@ -33,15 +34,17 @@ public class FluteButton : MonoBehaviour
             ButtonIsReleased();
         }
     }
-    public void ButtonIsPressed()
+    void ButtonIsPressed()
     {
         button.GetComponent<MeshRenderer>().material = buttonMaterialPressed;
+        isPressed = true;
         Debug.Log($"Flute Button {midiValue} was Pressed");
     }
 
-    public void ButtonIsReleased()
+    void ButtonIsReleased()
     {
         button.GetComponent<MeshRenderer>().material = buttonMaterialRelease;
+        isPressed = false;
         Debug.Log($"Flute Button {midiValue} was Released");
     }
 }

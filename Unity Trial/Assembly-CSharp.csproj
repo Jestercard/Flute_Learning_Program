@@ -68,7 +68,7 @@
     <Compile Include="Assets\MidiJack\MidiStateUpdater.cs" />
     <Compile Include="Assets\Scripts\ButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\FluteButton.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Pattern.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>G:/Repositories/Flute_Learning_Program/Unity Trial/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
