@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using MidiJack;
 
-public class FluteButton : MonoBehaviour
+public class InstrumentButtonBehavior : MonoBehaviour
 {
     public int midiValue;
     public GameObject fluteButtonPrefab;
     public Material buttonMaterialRelease;
     public Material buttonMaterialPressed;
-    //public Material buttonComboMaterial; added in the future
-
+    public Material buttonMaterialCombo;
+    public bool isPressed = false;
     private Transform location;
     private GameObject button;
-    private readonly MidiChannel midiChannel;
-    public bool isPressed = false;
 
     public void Start()
     {
@@ -22,29 +20,21 @@ public class FluteButton : MonoBehaviour
         button = Instantiate<GameObject>(fluteButtonPrefab, location.position, location.rotation);
         Debug.Log($"Flute Button {midiValue} was Instantiated");
     }
-
-    public void Update()
-    {
-        if (MidiMaster.GetKeyDown(midiChannel, midiValue))
-        {
-            ButtonIsPressed();
-        }
-        if (MidiMaster.GetKeyUp(midiChannel, midiValue))
-        {
-            ButtonIsReleased();
-        }
-    }
-    void ButtonIsPressed()
+    public void ButtonIsPressed()
     {
         button.GetComponent<MeshRenderer>().material = buttonMaterialPressed;
         isPressed = true;
-        Debug.Log($"Flute Button {midiValue} was Pressed");
     }
 
-    void ButtonIsReleased()
+    public void ButtonIsReleased()
     {
         button.GetComponent<MeshRenderer>().material = buttonMaterialRelease;
         isPressed = false;
-        Debug.Log($"Flute Button {midiValue} was Released");
+    }
+
+    public void ButtonIsCombo()
+    {
+        button.GetComponent<MeshRenderer>().material = buttonMaterialCombo;
+        isPressed = true;
     }
 }

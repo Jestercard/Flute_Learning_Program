@@ -120,6 +120,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &156869970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1460129606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &204692972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 892213496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &256336151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2693451214586609057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356766819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,7 +335,7 @@ Transform:
   - {fileID: 1988608521}
   - {fileID: 892213497}
   m_Father: {fileID: 650597463}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -411,6 +429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 650597463}
+  - component: {fileID: 650597464}
   m_Layer: 0
   m_Name: Flute
   m_TagString: Untagged
@@ -429,12 +448,45 @@ Transform:
   m_LocalPosition: {x: 0, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2110031011}
   - {fileID: 1130921940}
   - {fileID: 413519200}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650597464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650597462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788295709e96d3b4c94ef3c5215c0843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button0: {fileID: 256336151}
+  button1: {fileID: 707640445}
+  button2: {fileID: 1424570503}
+  button3: {fileID: 2063065664}
+  button4: {fileID: 1209634618}
+  button5: {fileID: 156869970}
+  button6: {fileID: 1400925166}
+  button7: {fileID: 747864169}
+  button8: {fileID: 204692972}
+  actualButtonPattern: 
+--- !u!1 &707640445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 356766819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &747864169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1988608520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &767579865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -900,6 +952,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
     type: 3}
   m_PrefabInstance: {fileID: 1132957078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1209634618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935369280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1400925166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 407818186}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1424570503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1478866441}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1460129606
 PrefabInstance:
@@ -1464,50 +1534,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1988608520}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2110031010
+--- !u!1 &2063065664 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1132957078}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2110031011}
-  - component: {fileID: 2110031012}
-  m_Layer: 0
-  m_Name: CombinationChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2110031011
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110031010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 650597463}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2110031012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110031010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84809e867af8bc4a8dd0d64efb17915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fluteButtons: {fileID: 413519199}
 --- !u!1001 &2693451214586609057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1632,7 +1664,7 @@ PrefabInstance:
     - target: {fileID: 8564589791687000327, guid: 355316598a0410d4f9908c1c259d7be2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8564589791687000327, guid: 355316598a0410d4f9908c1c259d7be2,
         type: 3}

@@ -50,3 +50,5 @@ MonoBehaviour:
     type: 2}
   buttonMaterialPressed: {fileID: 2100000, guid: 336df9d0a1b9eb646aa21b78913e5ed0,
     type: 2}
+  buttonMaterialCombo: {fileID: 2100000, guid: 0a049f22074b3f34c805973407f96f99, type: 2}
+  isPressed: 0
