@@ -3,7 +3,15 @@ guid: a2da4e23ce453e54c847a1efa8843384
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - instrumentButtonPrefab: {fileID: 3576202713209504805, guid: 2d638c6ad2329124f9eb250fe9e68c94,
+      type: 3}
+  - instrumentButtonMaterialRelease: {fileID: 2100000, guid: c8acab68dd70f9343a420260003c7c26,
+      type: 2}
+  - instrumentButtonMaterialPressed: {fileID: 2100000, guid: 336df9d0a1b9eb646aa21b78913e5ed0,
+      type: 2}
+  - instrumentButtonMaterialCombo: {fileID: 2100000, guid: 0a049f22074b3f34c805973407f96f99,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiValue: 0
-  fluteButtonPrefab: {fileID: 3576202713209504805, guid: 2d638c6ad2329124f9eb250fe9e68c94,
+  state: 
+  instrumentButtonPrefab: {fileID: 3576202713209504805, guid: 2d638c6ad2329124f9eb250fe9e68c94,
     type: 3}
-  buttonMaterialRelease: {fileID: 2100000, guid: c8acab68dd70f9343a420260003c7c26,
+  instrumentButtonMaterialRelease: {fileID: 2100000, guid: c8acab68dd70f9343a420260003c7c26,
     type: 2}
-  buttonMaterialPressed: {fileID: 2100000, guid: 336df9d0a1b9eb646aa21b78913e5ed0,
+  instrumentButtonMaterialPressed: {fileID: 2100000, guid: 336df9d0a1b9eb646aa21b78913e5ed0,
     type: 2}
-  buttonMaterialCombo: {fileID: 2100000, guid: 0a049f22074b3f34c805973407f96f99, type: 2}
-  isPressed: 0
+  instrumentButtonMaterialCombo: {fileID: 2100000, guid: 0a049f22074b3f34c805973407f96f99,
+    type: 2}

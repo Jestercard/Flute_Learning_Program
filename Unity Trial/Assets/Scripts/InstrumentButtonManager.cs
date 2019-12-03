@@ -5,60 +5,42 @@ using MidiJack;
 
 public class InstrumentButtonManager : MonoBehaviour
 {
-    public GameObject button0;
-    public GameObject button1;
-    public GameObject button2;
-    public GameObject button3;
-    public GameObject button4;
-    public GameObject button5;
-    public GameObject button6;
-    public GameObject button7;
-    public GameObject button8;
-
-    public int[] actualButtonPattern;
-    private InstrumentButtonBehavior instrumentButtonBehavior;
+    public GameObject buttonList;
+    private InstrumentButtonBehavior[] buttonListArray;
+    public int[] instrumentButtonPattern;
 
     void Start()
     {
-        actualButtonPattern = new int[9]; //TODO adjust to have as many active buttons as needed
+        buttonListArray = buttonList.GetComponentsInChildren<InstrumentButtonBehavior>();
+        Debug.Log("buttonListArray is built");
+        instrumentButtonPattern = new int[buttonListArray.Length];
+        Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
     }
 
     void Update()
     {
-        CheckInstrumentButtonIsPressed(button0, 0);
-        CheckInstrumentButtonIsPressed(button1, 1);
-        CheckInstrumentButtonIsPressed(button2, 2);
-        CheckInstrumentButtonIsPressed(button3, 3);
-        CheckInstrumentButtonIsPressed(button4, 4);
-        CheckInstrumentButtonIsPressed(button5, 5);
-        CheckInstrumentButtonIsPressed(button6, 6);
-        CheckInstrumentButtonIsPressed(button7, 7);
-        CheckInstrumentButtonIsPressed(button8, 8);
-        
+        CheckInstrumentButtonIsPressed(buttonListArray);
         //TODO make new checkpattern script
-
+        //TODO set combo pattern if pattern is detected
     }
 
-    private void CheckInstrumentButtonIsPressed(GameObject button, int a)
+    private void CheckInstrumentButtonIsPressed(InstrumentButtonBehavior[] buttonListArray)
     {
-        if (MidiMaster.GetKeyDown(MidiChannel.Ch1, button.GetComponent<InstrumentButtonBehavior>().midiValue))
+        int patternPosition = 0;
+        foreach(InstrumentButtonBehavior button in buttonListArray)
         {
-            button.GetComponent<InstrumentButtonBehavior>().ButtonIsPressed();
-            Debug.Log($"MIDI value {button.GetComponent<InstrumentButtonBehavior>().midiValue} pressed");
-        }
-        else if (MidiMaster.GetKeyUp(MidiChannel.Ch1, button.GetComponent<InstrumentButtonBehavior>().midiValue))
-        {
-            button.GetComponent<InstrumentButtonBehavior>().ButtonIsReleased();
-            Debug.Log($"MIDI value {button.GetComponent<InstrumentButtonBehavior>().midiValue} released");
-        }
-
-        if (button.GetComponent<InstrumentButtonBehavior>().isPressed)
-        {
-            actualButtonPattern[a] = 1;
-        }
-        else
-        {
-            actualButtonPattern[a] = 0;
+            if (MidiMaster.GetKeyUp(button.midiValue))
+            {
+                button.state = "release";
+                instrumentButtonPattern[patternPosition] = 0;
+            }
+            if (MidiMaster.GetKeyDown(button.midiValue))
+            {
+                button.state = "press";
+                instrumentButtonPattern[patternPosition] = 1;
+            }
+            Debug.Log($"{button.midiValue} and {button.state} and {patternPosition}");
+            patternPosition++;
         }
     }
 }

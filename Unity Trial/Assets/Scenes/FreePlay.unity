@@ -120,24 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &156869970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1460129606}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &204692972 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 892213496}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &256336151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2693451214586609057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356766819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149,6 +131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: L-Index
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
       objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
@@ -229,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: R-Middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
       objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
@@ -465,28 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788295709e96d3b4c94ef3c5215c0843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button0: {fileID: 256336151}
-  button1: {fileID: 707640445}
-  button2: {fileID: 1424570503}
-  button3: {fileID: 2063065664}
-  button4: {fileID: 1209634618}
-  button5: {fileID: 156869970}
-  button6: {fileID: 1400925166}
-  button7: {fileID: 747864169}
-  button8: {fileID: 204692972}
-  actualButtonPattern: 
---- !u!1 &707640445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 356766819}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &747864169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1988608520}
-  m_PrefabAsset: {fileID: 0}
+  buttonList: {fileID: 413519199}
+  instrumentButtonPattern: 
 --- !u!1001 &767579865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -702,6 +674,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: R-Pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
+      objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -885,6 +862,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: L-Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
+      objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -953,24 +935,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1132957078}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1209634618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1935369280}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1400925166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 407818186}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1424570503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1478866441}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1460129606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,6 +946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: R-Index
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
       objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
@@ -1062,6 +1031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: L-Middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
       objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
@@ -1386,6 +1360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: L-Pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
+      objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1466,6 +1445,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: R-Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
+      objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1534,12 +1518,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1988608520}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2063065664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1132957078}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2693451214586609057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1551,6 +1529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: L-Thumb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693451213511964909, guid: 1ee8959beb5392d4cb4464778d51b25c,
+        type: 3}
+      propertyPath: m_TagString
+      value: InstrumentButtons
       objectReference: {fileID: 0}
     - target: {fileID: 2693451213511964908, guid: 1ee8959beb5392d4cb4464778d51b25c,
         type: 3}

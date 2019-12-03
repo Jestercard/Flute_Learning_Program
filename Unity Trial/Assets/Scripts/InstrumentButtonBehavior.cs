@@ -1,40 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MidiJack;
+﻿using UnityEngine;
 
 public class InstrumentButtonBehavior : MonoBehaviour
 {
-    public int midiValue;
-    public GameObject fluteButtonPrefab;
-    public Material buttonMaterialRelease;
-    public Material buttonMaterialPressed;
-    public Material buttonMaterialCombo;
-    public bool isPressed = false;
+    [Header("Individual Button Settings")]
+    public int midiValue; //the value that each instance looks for from the midi device
+    public string state;
+
+    [Header("Predetermined Settings")]
+    [SerializeField]
+    private GameObject instrumentButtonPrefab;
+    [SerializeField]
+    private Material instrumentButtonMaterialRelease;
+    [SerializeField]
+    private Material instrumentButtonMaterialPressed;
+    [SerializeField]
+    private Material instrumentButtonMaterialCombo;
+
     private Transform location;
     private GameObject button;
 
-    public void Start()
+    public void Start() //gets coordinates for each locate and instantiates the fluteButtonPrefab at it
     {
         location = GetComponent<Transform>();
-        button = Instantiate<GameObject>(fluteButtonPrefab, location.position, location.rotation);
+        button = Instantiate(instrumentButtonPrefab, location.position, location.rotation);
+        state = "release";
         Debug.Log($"Flute Button {midiValue} was Instantiated");
     }
-    public void ButtonIsPressed()
-    {
-        button.GetComponent<MeshRenderer>().material = buttonMaterialPressed;
-        isPressed = true;
-    }
 
-    public void ButtonIsReleased()
+    public void Update()
     {
-        button.GetComponent<MeshRenderer>().material = buttonMaterialRelease;
-        isPressed = false;
-    }
+        switch (state)
+        {
+            case "release": //button is blue
 
-    public void ButtonIsCombo()
-    {
-        button.GetComponent<MeshRenderer>().material = buttonMaterialCombo;
-        isPressed = true;
+                button.GetComponent<MeshRenderer>().material = instrumentButtonMaterialRelease;
+                break;
+            case "press": //button is red
+                button.GetComponent<MeshRenderer>().material = instrumentButtonMaterialPressed;
+                break;
+            case "combo": //button is green
+                button.GetComponent<MeshRenderer>().material = instrumentButtonMaterialCombo;
+                break;
+        }
     }
 }

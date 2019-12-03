@@ -66,6 +66,7 @@
     <Compile Include="Assets\MidiJack\MidiDriver.cs" />
     <Compile Include="Assets\MidiJack\MidiMaster.cs" />
     <Compile Include="Assets\MidiJack\MidiStateUpdater.cs" />
+    <Compile Include="Assets\Scripts\InputPatternChecker.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonManager.cs" />
     <Compile Include="Assets\Scripts\MenuButtonBehavior.cs" />
