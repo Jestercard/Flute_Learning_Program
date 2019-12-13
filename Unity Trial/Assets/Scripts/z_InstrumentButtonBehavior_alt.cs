@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using MidiJack;
 
-public class InstrumentButtonBehavior : MonoBehaviour
+public class InstrumentButtonBehavior_alt : MonoBehaviour
 {
     [Header("Individual Button Settings")]
     public int midiValue; //the value that each instance looks for from the midi device
@@ -30,8 +30,9 @@ public class InstrumentButtonBehavior : MonoBehaviour
 
     public void Update()
     {
-        CheckInstrumentButtonIsPressed(midiValue);
         CheckState(state);
+        //TODO make new checkpattern script
+        //TODO set combo pattern if pattern is detected
     }
 
     private void CheckState(string state)
@@ -48,18 +49,5 @@ public class InstrumentButtonBehavior : MonoBehaviour
                 button.GetComponent<MeshRenderer>().material = instrumentButtonMaterialCombo;
                 break;
         }
-    }
-
-    public void CheckInstrumentButtonIsPressed(int midiValue)
-    {
-        if (MidiMaster.GetKeyUp(midiValue))
-        {
-            state = "release";
-        }
-        else if (MidiMaster.GetKeyDown(midiValue))
-        {
-            state = "press";
-        }
-        Debug.Log($"{midiValue} and {state}");
     }
 }

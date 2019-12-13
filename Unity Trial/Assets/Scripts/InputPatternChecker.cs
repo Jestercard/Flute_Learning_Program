@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class InputPatternChecker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool patternMatch;
+    public bool IsInputAKnownPattern(int[] inputPattern, List<int[]> patternList)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (patternList.Contains(inputPattern))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

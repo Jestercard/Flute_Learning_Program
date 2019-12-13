@@ -6,8 +6,12 @@ using MidiJack;
 public class InstrumentButtonManager : MonoBehaviour
 {
     public GameObject buttonList;
-    private InstrumentButtonBehavior[] buttonListArray;
     public int[] instrumentButtonPattern;
+
+    private InstrumentButtonBehavior[] buttonListArray;
+    public bool isPattern;
+    private InputPatternChecker patternChecker;
+    private PatternMasterList patternList;
 
     void Start()
     {
@@ -15,32 +19,60 @@ public class InstrumentButtonManager : MonoBehaviour
         Debug.Log("buttonListArray is built");
         instrumentButtonPattern = new int[buttonListArray.Length];
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
+        patternChecker = new InputPatternChecker();
+        patternList = new PatternMasterList();
     }
 
     void Update()
     {
-        CheckInstrumentButtonIsPressed(buttonListArray);
-        //TODO make new checkpattern script
-        //TODO set combo pattern if pattern is detected
+        //get input array pattern
+        GetInstrumentButtonPattern();
+        Debug.Log(buttonList);
+        //get true if input array pattern matches a known pattern
+        isPattern = patternChecker.IsInputAKnownPattern(instrumentButtonPattern, patternList.flutePatterns);
+        Debug.Log(isPattern);
+        //change states depending on isPattern
+        StateSwapper(isPattern);
     }
 
-    private void CheckInstrumentButtonIsPressed(InstrumentButtonBehavior[] buttonListArray)
+    void GetInstrumentButtonPattern()
     {
-        int patternPosition = 0;
-        foreach(InstrumentButtonBehavior button in buttonListArray)
+        foreach (InstrumentButtonBehavior button in buttonListArray)
         {
-            if (MidiMaster.GetKeyUp(button.midiValue))
+            int position = 0;
+            if (button.state == "release")
             {
-                button.state = "release";
-                instrumentButtonPattern[patternPosition] = 0;
+                instrumentButtonPattern[position] = 0;
             }
-            if (MidiMaster.GetKeyDown(button.midiValue))
+            else
             {
-                button.state = "press";
-                instrumentButtonPattern[patternPosition] = 1;
+                instrumentButtonPattern[position] = 1;
             }
-            Debug.Log($"{button.midiValue} and {button.state} and {patternPosition}");
-            patternPosition++;
+            position++;
+        }
+    }
+
+    void StateSwapper(bool isPattern)
+    {
+        if (isPattern)
+        {
+            foreach(InstrumentButtonBehavior button in buttonListArray)
+            {
+                if (button.state == "press")
+                {
+                    button.state = "combo";
+                }
+            }
+        }
+        else
+        {
+            foreach (InstrumentButtonBehavior button in buttonListArray)
+            {
+                if (button.state != "release")
+                {
+                    button.state = "press";
+                }
+            }
         }
     }
 }
