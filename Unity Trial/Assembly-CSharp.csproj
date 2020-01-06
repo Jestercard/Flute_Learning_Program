@@ -66,15 +66,11 @@
     <Compile Include="Assets\MidiJack\MidiDriver.cs" />
     <Compile Include="Assets\MidiJack\MidiMaster.cs" />
     <Compile Include="Assets\MidiJack\MidiStateUpdater.cs" />
-    <Compile Include="Assets\Scripts\InputPatternChecker.cs" />
+    <Compile Include="Assets\Scripts\DisplayNoteBehavior.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonManager.cs" />
     <Compile Include="Assets\Scripts\MenuButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\PatternMasterList.cs" />
-    <Compile Include="Assets\Scripts\z_InstrumentButtonBehavior_alt.cs" />
-    <Compile Include="Assets\Scripts\z_InstrumentButtonFingering.cs" />
-    <Compile Include="Assets\Scripts\z_InstrumentButtonManager_alt.cs" />
-    <Compile Include="Assets\Scripts\z_NoteCombinations.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>G:/Repositories/Flute_Learning_Program/Unity Trial/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

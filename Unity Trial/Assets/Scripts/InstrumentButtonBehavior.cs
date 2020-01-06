@@ -8,14 +8,10 @@ public class InstrumentButtonBehavior : MonoBehaviour
     public string state;
 
     [Header("Predetermined Settings")]
-    [SerializeField]
-    private GameObject instrumentButtonPrefab;
-    [SerializeField]
-    private Material instrumentButtonMaterialRelease;
-    [SerializeField]
-    private Material instrumentButtonMaterialPressed;
-    [SerializeField]
-    private Material instrumentButtonMaterialCombo;
+    public GameObject instrumentButtonPrefab;
+    public Material instrumentButtonMaterialRelease;
+    public Material instrumentButtonMaterialPressed;
+    public Material instrumentButtonMaterialCombo;
 
     private Transform location;
     private GameObject button;
@@ -25,16 +21,10 @@ public class InstrumentButtonBehavior : MonoBehaviour
         location = GetComponent<Transform>();
         button = Instantiate(instrumentButtonPrefab, location.position, location.rotation);
         state = "release";
-        Debug.Log($"Flute Button {midiValue} was Instantiated");
+        Debug.Log("Flute Button was Instantiated");
     }
 
     public void Update()
-    {
-        CheckInstrumentButtonIsPressed(midiValue);
-        CheckState(state);
-    }
-
-    private void CheckState(string state)
     {
         switch (state)
         {
@@ -48,18 +38,5 @@ public class InstrumentButtonBehavior : MonoBehaviour
                 button.GetComponent<MeshRenderer>().material = instrumentButtonMaterialCombo;
                 break;
         }
-    }
-
-    public void CheckInstrumentButtonIsPressed(int midiValue)
-    {
-        if (MidiMaster.GetKeyUp(midiValue))
-        {
-            state = "release";
-        }
-        else if (MidiMaster.GetKeyDown(midiValue))
-        {
-            state = "press";
-        }
-        Debug.Log($"{midiValue} and {state}");
     }
 }
