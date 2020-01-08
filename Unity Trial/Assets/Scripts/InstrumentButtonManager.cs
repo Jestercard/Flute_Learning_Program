@@ -13,6 +13,7 @@ public class InstrumentButtonManager : MonoBehaviour
     public bool isPattern;
 
     private List<int[]> masterList = new List<int[]> { };
+    private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
     public PatternMasterList patternMasterList = new PatternMasterList();
 
     void Start()
@@ -22,6 +23,7 @@ public class InstrumentButtonManager : MonoBehaviour
         instrumentButtonPattern = new int[buttonListArray.Length];
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
         masterList = patternMasterList.CreateFluteList();
+        masterDictionary = patternMasterList.CreateFluteDictionary();
         Debug.Log($"Master List Created");
     }
     void Update()
@@ -33,6 +35,7 @@ public class InstrumentButtonManager : MonoBehaviour
         Debug.Log(isPattern);
         //change states depending on isPattern
         StateSwapper(isPattern);
+        SetDisplayPanel();
     }
     void GetInstrumentButtonPattern()
     {
@@ -74,6 +77,18 @@ public class InstrumentButtonManager : MonoBehaviour
             return false;
         }
     }
+
+    bool IsInputAKnownPattern2(int[] inputPattern, Dictionary<string, int[]> patternList)
+    {
+        if (patternList.ContainsValue(inputPattern))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     void StateSwapper(bool isPattern)
     {
         //isPattern true turns buttons green (that are pressed) while keeping released buttons blue
@@ -98,5 +113,10 @@ public class InstrumentButtonManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SetDisplayPanel()
+    {
+        //TODO make the display panel update
     }
 }
