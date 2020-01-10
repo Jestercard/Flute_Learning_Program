@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using MidiJack;
 
 public class InstrumentButtonManager : MonoBehaviour
@@ -12,9 +13,10 @@ public class InstrumentButtonManager : MonoBehaviour
     private InstrumentButtonBehavior[] buttonListArray;
     public bool isPattern;
 
-    private List<int[]> masterList = new List<int[]> { };
     private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
     public PatternMasterList patternMasterList = new PatternMasterList();
+
+    public Text displayText;
 
     void Start()
     {
@@ -22,20 +24,19 @@ public class InstrumentButtonManager : MonoBehaviour
         Debug.Log("buttonListArray is built");
         instrumentButtonPattern = new int[buttonListArray.Length];
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
-        masterList = patternMasterList.CreateFluteList();
         masterDictionary = patternMasterList.CreateFluteDictionary();
         Debug.Log($"Master List Created");
+        displayText.text = "Note: ";
     }
     void Update()
     {
         //get input array pattern
         GetInstrumentButtonPattern();
         //get true if input array pattern matches a known pattern
-        isPattern = IsInputAKnownPattern(instrumentButtonPattern, masterList);
+        isPattern = IsInputAKnownPattern(instrumentButtonPattern, masterDictionary);
         Debug.Log(isPattern);
         //change states depending on isPattern
         StateSwapper(isPattern);
-        SetDisplayPanel();
     }
     void GetInstrumentButtonPattern()
     {
@@ -57,14 +58,16 @@ public class InstrumentButtonManager : MonoBehaviour
             patternPosition++;
         }
     }
-    bool IsInputAKnownPattern(int[] inputPattern, List<int[]> patternList)
+
+    bool IsInputAKnownPattern(int[] inputPattern, Dictionary<string, int[]> patternList)
     {
         bool patternDetected = false;
-        for(int i = 0; i < patternList.Count; i++)
+        foreach(var patternCombo in patternList)
         {
-            patternDetected = patternList[i].SequenceEqual(inputPattern);
+            patternDetected = patternCombo.Value.SequenceEqual(inputPattern);
             if (patternDetected)
             {
+                displayText.text = "Note: " + patternCombo.Key;
                 break;
             }
         }
@@ -74,18 +77,7 @@ public class InstrumentButtonManager : MonoBehaviour
         }
         else
         {
-            return false;
-        }
-    }
-
-    bool IsInputAKnownPattern2(int[] inputPattern, Dictionary<string, int[]> patternList)
-    {
-        if (patternList.ContainsValue(inputPattern))
-        {
-            return true;
-        }
-        else
-        {
+            displayText.text = "Note: ";
             return false;
         }
     }
@@ -113,10 +105,5 @@ public class InstrumentButtonManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    void SetDisplayPanel()
-    {
-        //TODO make the display panel update
     }
 }
