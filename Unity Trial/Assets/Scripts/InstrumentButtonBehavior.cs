@@ -7,7 +7,7 @@ public class InstrumentButtonBehavior : MonoBehaviour
     public int midiValue; //the value that each instance looks for from the midi device
     public string state;
 
-    [Header("Predetermined Settings")]
+    [Header("Predetermined Settings")] // this is cool!
     public GameObject instrumentButtonPrefab;
     public Material instrumentButtonMaterialRelease;
     public Material instrumentButtonMaterialPressed;
