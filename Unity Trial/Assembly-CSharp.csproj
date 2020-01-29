@@ -67,7 +67,8 @@
     <Compile Include="Assets\MidiJack\MidiMaster.cs" />
     <Compile Include="Assets\MidiJack\MidiStateUpdater.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonBehavior.cs" />
-    <Compile Include="Assets\Scripts\InstrumentButtonManager.cs" />
+    <Compile Include="Assets\Scripts\InstrumentButtonManager_freeplay.cs" />
+    <Compile Include="Assets\Scripts\InstrumentButtonManager_playthenote.cs" />
     <Compile Include="Assets\Scripts\MenuButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\PatternMasterList.cs" />
     <Reference Include="Unity.Timeline.Editor">

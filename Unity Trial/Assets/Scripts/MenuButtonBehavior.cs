@@ -26,6 +26,12 @@ public class MenuButtonBehavior : MonoBehaviour
         Debug.Log("Options Button");
         SceneManager.LoadScene("Options");
     }
+
+    public void ChallengePlayTheNote()
+    {
+        Debug.Log("Challenge 1");
+        SceneManager.LoadScene("Challenge_PlayTheNote");
+    }
 }
 
 

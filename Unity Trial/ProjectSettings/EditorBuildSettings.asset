@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: 00943a2c26cb815468eea6161014e663
+  - enabled: 1
+    path: Assets/Scenes/Challenge_PlayTheNote.unity
+    guid: 44914abe3ab06e0489fb15a7fec6d61b
   m_configObjects: {}

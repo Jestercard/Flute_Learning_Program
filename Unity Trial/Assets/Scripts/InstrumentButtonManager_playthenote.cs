@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using MidiJack;
 
-public class InstrumentButtonManager : MonoBehaviour
+public class InstrumentButtonManager_playthenote : MonoBehaviour
 {
     public GameObject buttonList;
     public int[] instrumentButtonPattern;
 
     private InstrumentButtonBehavior[] buttonListArray;
-    public bool isPattern;
+
+    private int randomValue;
+    public string randomNote;
+    public bool randomNoteDetector = false;
 
     private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
     public PatternMasterList patternMasterList = new PatternMasterList();
 
-    public Text displayText;
+    public Text displayRandomNote;
+    public Text displayScore;
+
+    private int displayScoreInt = 0;
 
     void Start()
     {
@@ -26,17 +33,32 @@ public class InstrumentButtonManager : MonoBehaviour
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
         masterDictionary = patternMasterList.CreateFluteDictionary();
         Debug.Log($"Master List Created");
-        displayText.text = "Note: ";
+        displayScore.text = "Score: " + displayScoreInt;
+        GetRandomNote();
+        Debug.Log($"Random Note is " + randomNote);
     }
     void Update()
     {
-        //get input array pattern
-        GetInstrumentButtonPattern();
-        //get true if input array pattern matches a known pattern
-        isPattern = IsInputAKnownPattern(instrumentButtonPattern, masterDictionary);
-        Debug.Log(isPattern);
-        //change states depending on isPattern
-        StateSwapper(isPattern);
+        if(!randomNoteDetector)
+        {
+            GetInstrumentButtonPattern();
+            randomNoteDetector = IsInputAKnownPattern(instrumentButtonPattern, masterDictionary.ElementAt(randomValue).Value);
+        }
+        else
+        {
+            displayRandomNote.text = "Correct!";
+            displayScoreInt += 10;
+            displayScore.text = "Score: " + displayScoreInt;
+            StateSwapper();
+            Time.timeScale = 0;
+        }
+    }
+
+    void GetRandomNote()
+    {
+        randomValue = Random.Range(0, masterDictionary.Count);
+        randomNote = masterDictionary.ElementAt(randomValue).Key;
+        displayRandomNote.text = "Note: " + randomNote;
     }
     void GetInstrumentButtonPattern()
     {
@@ -59,50 +81,25 @@ public class InstrumentButtonManager : MonoBehaviour
         }
     }
 
-    bool IsInputAKnownPattern(int[] inputPattern, Dictionary<string, int[]> patternList)
+    bool IsInputAKnownPattern(int[] inputPattern, int[] randomNote)
     {
-        bool patternDetected = false;
-        foreach(var patternCombo in patternList)
-        {
-            patternDetected = patternCombo.Value.SequenceEqual(inputPattern);
-            if (patternDetected)
-            {
-                displayText.text = "Note: " + patternCombo.Key;
-                break;
-            }
-        }
-        if (patternDetected)
+        if (inputPattern.SequenceEqual(randomNote))
         {
             return true;
         }
         else
         {
-            displayText.text = "Note: ";
             return false;
         }
     }
-    void StateSwapper(bool isPattern)
+    void StateSwapper()
     {
         //isPattern true turns buttons green (that are pressed) while keeping released buttons blue
-        if (isPattern)
+        foreach (InstrumentButtonBehavior button in buttonListArray)
         {
-            foreach(InstrumentButtonBehavior button in buttonListArray)
+            if (button.state == "press")
             {
-                if (button.state == "press")
-                {
-                    button.state = "combo";
-                }
-            }
-        }
-        //isPattern false turns any green buttons to red
-        else
-        {
-            foreach (InstrumentButtonBehavior button in buttonListArray)
-            {
-                if (button.state != "release")
-                {
-                    button.state = "press";
-                }
+                button.state = "combo";
             }
         }
     }
