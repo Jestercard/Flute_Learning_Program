@@ -167,6 +167,7 @@ MonoBehaviour:
   instrumentButtonPattern: 
   randomNote: 
   randomNoteDetector: 0
+  randomNoteSet: 0
   displayRandomNote: {fileID: 1996330684}
   displayScore: {fileID: 1637287406}
 --- !u!114 &165135907 stripped
@@ -1052,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChallengePlayTheNote
+      value: ChallengePlayTheNoteNewNote
       objectReference: {fileID: 0}
     - target: {fileID: 2236654301368200224, guid: 03c3cb3f7f7cf394c8e8511c7c17448e,
         type: 3}

@@ -32,6 +32,12 @@ public class MenuButtonBehavior : MonoBehaviour
         Debug.Log("Challenge 1");
         SceneManager.LoadScene("Challenge_PlayTheNote");
     }
+
+    public void ChallengePlayTheNoteNewNote()
+    {
+        Debug.Log("New Note Selected");
+        FindObjectOfType<InstrumentButtonManager_playthenote>().GetRandomNote();
+    }
 }
 
 

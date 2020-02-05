@@ -16,12 +16,14 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
     private int randomValue;
     public string randomNote;
     public bool randomNoteDetector = false;
+    public bool randomNoteSet = false;
 
     private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
     public PatternMasterList patternMasterList = new PatternMasterList();
 
     public Text displayRandomNote;
     public Text displayScore;
+    private bool displayScoreBool = false;
 
     private int displayScoreInt = 0;
 
@@ -33,12 +35,14 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
         masterDictionary = patternMasterList.CreateFluteDictionary();
         Debug.Log($"Master List Created");
-        displayScore.text = "Score: " + displayScoreInt;
-        GetRandomNote();
-        Debug.Log($"Random Note is " + randomNote);
     }
     void Update()
     {
+        if(!randomNoteSet)
+        {
+            ChallengeSetup();
+            randomNoteSet = true;
+        }
         if(!randomNoteDetector)
         {
             GetInstrumentButtonPattern();
@@ -46,19 +50,30 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
         }
         else
         {
-            displayRandomNote.text = "Correct!";
-            displayScoreInt += 10;
-            displayScore.text = "Score: " + displayScoreInt;
             StateSwapper();
-            Time.timeScale = 0;
+            displayRandomNote.text = "Correct!";
+            if (!displayScoreBool)
+            {
+                displayScoreInt += 10;
+                displayScore.text = "Score: " + displayScoreInt;
+                displayScoreBool = true;
+                StartCoroutine(WaitAndRestart());
+            }
         }
     }
 
-    void GetRandomNote()
+    void ChallengeSetup()
+    {
+        displayScore.text = "Score: " + displayScoreInt;
+        GetRandomNote();
+    }
+
+    public void GetRandomNote()
     {
         randomValue = Random.Range(0, masterDictionary.Count);
         randomNote = masterDictionary.ElementAt(randomValue).Key;
         displayRandomNote.text = "Note: " + randomNote;
+        Debug.Log($"Random Note is " + randomNote);
     }
     void GetInstrumentButtonPattern()
     {
@@ -102,5 +117,13 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
                 button.state = "combo";
             }
         }
+    }
+
+    private IEnumerator WaitAndRestart()
+    {
+        yield return new WaitForSeconds(3);
+        randomNoteSet = false;
+        randomNoteDetector = false;
+        displayScoreBool = false;
     }
 }
