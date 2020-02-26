@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\InstrumentButtonManager_freeplay.cs" />
     <Compile Include="Assets\Scripts\InstrumentButtonManager_playthenote.cs" />
     <Compile Include="Assets\Scripts\MenuButtonBehavior.cs" />
+    <Compile Include="Assets\Scripts\Note.cs" />
+    <Compile Include="Assets\Scripts\NoteAssetGroups.cs" />
     <Compile Include="Assets\Scripts\PatternMasterList.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>G:/Repositories/Flute_Learning_Program/Unity Trial/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

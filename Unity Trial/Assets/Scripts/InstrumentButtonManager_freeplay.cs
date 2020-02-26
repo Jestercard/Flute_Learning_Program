@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿using MidiJack;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using MidiJack;
 
 public class InstrumentButtonManager_freeplay : MonoBehaviour
 {
@@ -13,9 +12,6 @@ public class InstrumentButtonManager_freeplay : MonoBehaviour
     private InstrumentButtonBehavior[] buttonListArray;
     public bool isPattern;
 
-    private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
-    public PatternMasterList patternMasterList = new PatternMasterList();
-
     public Text displayText;
 
     void Start()
@@ -24,8 +20,6 @@ public class InstrumentButtonManager_freeplay : MonoBehaviour
         Debug.Log("buttonListArray is built");
         instrumentButtonPattern = new int[buttonListArray.Length];
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
-        masterDictionary = patternMasterList.CreateFluteDictionary();
-        Debug.Log($"Master List Created");
         displayText.text = "Note: ";
     }
     void Update()
@@ -33,60 +27,48 @@ public class InstrumentButtonManager_freeplay : MonoBehaviour
         //get input array pattern
         GetInstrumentButtonPattern();
         //get true if input array pattern matches a known pattern
-        isPattern = IsInputAKnownPattern(instrumentButtonPattern, masterDictionary);
+        isPattern = IsInputAKnownPattern(instrumentButtonPattern, NoteAssetGroups.fluteMasterList);
         Debug.Log(isPattern);
         //change states depending on isPattern
         StateSwapper(isPattern);
     }
     void GetInstrumentButtonPattern()
     {
-        int patternPosition = 0;
-        foreach (InstrumentButtonBehavior button in buttonListArray)
+        for (int i = 0; i < buttonListArray.Length; i++)
         {
-            //velocity at 0 mean note is released, anything else is pressed
+            InstrumentButtonBehavior button = buttonListArray[i];
             float velocity = MidiMaster.GetKey(button.midiValue);
-            if (velocity > 0)
-            {
-                instrumentButtonPattern[patternPosition] = 1;
-                button.state = "press";
-            }
-            else
-            {
-                instrumentButtonPattern[patternPosition] = 0;
-                button.state = "release";
-            }
-            patternPosition++;
+            bool isPressed = velocity > 0;
+            instrumentButtonPattern[i] = isPressed ? 1 : 0;
+            button.state = isPressed ? "press" : "release";
         }
     }
 
-    bool IsInputAKnownPattern(int[] inputPattern, Dictionary<string, int[]> patternList)
+    bool IsInputAKnownPattern(int[] inputPattern, Dictionary<int, Note> patternList)
     {
         bool patternDetected = false;
-        foreach(var patternCombo in patternList)
+        displayText.text = "Note: ";
+
+        foreach (var patternCombo in patternList)
         {
-            patternDetected = patternCombo.Value.SequenceEqual(inputPattern);
-            if (patternDetected)
+            var patternMatches = patternCombo.Value.InputMatchesNote(inputPattern);
+
+            if (patternMatches)
             {
                 displayText.text = "Note: " + patternCombo.Key;
+                patternDetected = true;
                 break;
             }
         }
-        if (patternDetected)
-        {
-            return true;
-        }
-        else
-        {
-            displayText.text = "Note: ";
-            return false;
-        }
+        return patternDetected;
     }
+
     void StateSwapper(bool isPattern)
     {
         //isPattern true turns buttons green (that are pressed) while keeping released buttons blue
         if (isPattern)
         {
-            foreach(InstrumentButtonBehavior button in buttonListArray)
+            foreach (InstrumentButtonBehavior button in buttonListArray)
             {
                 if (button.state == "press")
                 {

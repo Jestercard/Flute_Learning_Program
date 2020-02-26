@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using MidiJack;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using MidiJack;
 
 public class InstrumentButtonManager_playthenote : MonoBehaviour
 {
@@ -18,9 +16,6 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
     public bool randomNoteDetector = false;
     public bool randomNoteSet = false;
 
-    private Dictionary<string, int[]> masterDictionary = new Dictionary<string, int[]> { };
-    public PatternMasterList patternMasterList = new PatternMasterList();
-
     public Text displayRandomNote;
     public Text displayScore;
     private bool displayScoreBool = false;
@@ -33,30 +28,23 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
         Debug.Log("buttonListArray is built");
         instrumentButtonPattern = new int[buttonListArray.Length];
         Debug.Log($"Buttonlist is {buttonListArray.Length} in length");
-        masterDictionary = patternMasterList.CreateFluteDictionary();
-        Debug.Log($"Master List Created");
     }
     void Update()
     {
-        if(!randomNoteSet)
+        if (!randomNoteSet)
         {
             ChallengeSetup();
             randomNoteSet = true;
         }
-        if(!randomNoteDetector)
+        if (!randomNoteDetector)
         {
             GetInstrumentButtonPattern();
-            randomNoteDetector = IsInputAKnownPattern(instrumentButtonPattern, masterDictionary.ElementAt(randomValue).Value);
+            randomNoteDetector = NoteAssetGroups.fluteMasterList.ElementAt(randomValue).Value.InputMatchesNote(instrumentButtonPattern);
         }
         else
         {
-            StateSwapper();
-            displayRandomNote.text = "Correct!";
             if (!displayScoreBool)
             {
-                displayScoreInt += 10;
-                displayScore.text = "Score: " + displayScoreInt;
-                displayScoreBool = true;
                 StartCoroutine(WaitAndRestart());
             }
         }
@@ -70,43 +58,22 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
 
     public void GetRandomNote()
     {
-        randomValue = Random.Range(0, masterDictionary.Count);
-        randomNote = masterDictionary.ElementAt(randomValue).Key;
-        displayRandomNote.text = "Note: " + randomNote;
-        Debug.Log($"Random Note is " + randomNote);
+        randomValue = Random.Range(0, NoteAssetGroups.fluteMasterList.Count);
+        displayRandomNote.text = "Note: " + NoteAssetGroups.fluteMasterList.ElementAt(randomValue).Value.Name;
+
     }
     void GetInstrumentButtonPattern()
     {
-        int patternPosition = 0;
-        foreach (InstrumentButtonBehavior button in buttonListArray)
+        for (int i = 0; i < buttonListArray.Length; i++)
         {
-            //velocity at 0 mean note is released, anything else is pressed
+            InstrumentButtonBehavior button = buttonListArray[i];
             float velocity = MidiMaster.GetKey(button.midiValue);
-            if (velocity > 0)
-            {
-                instrumentButtonPattern[patternPosition] = 1;
-                button.state = "press";
-            }
-            else
-            {
-                instrumentButtonPattern[patternPosition] = 0;
-                button.state = "release";
-            }
-            patternPosition++;
+            bool isPressed = velocity > 0;
+            instrumentButtonPattern[i] = isPressed ? 1 : 0;
+            button.state = isPressed ? "press" : "release";
         }
     }
 
-    bool IsInputAKnownPattern(int[] inputPattern, int[] randomNote)
-    {
-        if (inputPattern.SequenceEqual(randomNote))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
     void StateSwapper()
     {
         //isPattern true turns buttons green (that are pressed) while keeping released buttons blue
@@ -121,6 +88,11 @@ public class InstrumentButtonManager_playthenote : MonoBehaviour
 
     private IEnumerator WaitAndRestart()
     {
+        StateSwapper();
+        displayRandomNote.text = "Correct!";
+        displayScoreInt += 10;
+        displayScore.text = "Score: " + displayScoreInt;
+        displayScoreBool = true;
         yield return new WaitForSeconds(3);
         randomNoteSet = false;
         randomNoteDetector = false;

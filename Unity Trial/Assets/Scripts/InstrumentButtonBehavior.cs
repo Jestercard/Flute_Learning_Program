@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using MidiJack;
 
 public class InstrumentButtonBehavior : MonoBehaviour
 {
